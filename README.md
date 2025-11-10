@@ -19,3 +19,4 @@ Este proyecto forma parte del curso Ingenieria de Software 2 y tiene como objeti
 ## 🗂️ Estructura del Repositorio
 
 - La carpeta **`Workshop-1/`** contiene el archivo correspondientes a la primera entrega del proyecto.
+- La carpeta **`Workshop-2/`** contiene el archivo correspondientes a la segunda entrega del proyecto.
