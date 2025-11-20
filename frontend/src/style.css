@@ -1,0 +1,81 @@
+/* src/assets/style.css */
+@import url('https://rsms.me/inter/inter.css');
+
+html { 
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #F5F0E9;           /* Beige fondo principal */
+  color: #2E5266;                /* Azul petróleo – texto principal */
+  min-height: 100vh;
+}
+
+/* Tipografía escalable y cálida */
+h1, h2, h3, h4, h5, h6 {
+  color: #2E5266;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  color: #6B9080;                /* Verde oliva – texto secundario */
+  line-height: 1.6;
+}
+
+/* Botones globales (para usar con router-link también) */
+.btn-primary,
+router-link.btn-primary {
+  display: inline-block;
+  background: #F9C846 !important;
+  color: #2E5266 !important;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(249, 200, 70, 0.3);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover,
+router-link.btn-primary:hover {
+  background: #FDE7A5 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 200, 70, 0.4);
+}
+
+.btn-secondary,
+router-link.btn-secondary {
+  display: inline-block;
+  background: transparent !important;
+  color: #6B9080 !important;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: 2.5px solid #6B9080;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover,
+router-link.btn-secondary:hover {
+  background: #6b908040 !important;
+  transform: translateY(-2px);
+}
+
+/* Scroll suave y selección de texto cálida */
+* { scroll-behavior: smooth; }
+::selection {
+  background: #F9C846;
+  color: #2E5266;
+}
