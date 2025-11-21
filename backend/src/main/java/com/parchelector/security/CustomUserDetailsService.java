@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                         new UsernameNotFoundException("User not found with username or email: " + usernameOrEmail)
                 );
 
-        if (!user.getIsActive()) {
+        if (!user.getActive()) {
             throw new UsernameNotFoundException("User account is inactive");
         }
 
