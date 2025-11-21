@@ -44,7 +44,7 @@ public class User {
     private LocalDateTime createdAt;
 
     @Column(name = "is_active", nullable = false)
-    private Boolean isActive = true;
+    private Boolean active = true;
 
     @Column(length = 16)
     private String role = "USER"; // USER, ADMIN, MODERATOR
