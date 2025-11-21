@@ -73,12 +73,26 @@
           <input
             v-model="searchQuery"
             type="search"
-            placeholder="Buscar libros por título o autor..."
+            placeholder="Buscar libros por título o autor... (Enter para buscar)"
             aria-label="Buscar libros"
+            @keyup.enter="handleSearch"
           />
         </div>
 
-        <div class="books-grid">
+        <!-- Loading state -->
+        <div v-if="isLoading" class="loading-state">
+          <div class="spinner"></div>
+          <p>Cargando libros...</p>
+        </div>
+
+        <!-- Error message -->
+        <div v-if="errorMessage && !isLoading" class="error-message">
+          <span class="error-icon">⚠️</span>
+          <p>{{ errorMessage }}</p>
+          <button class="retry-btn" @click="loadBooks">Reintentar</button>
+        </div>
+
+        <div v-if="!isLoading && !errorMessage" class="books-grid">
           <div v-for="book in filteredBooks" :key="book.id" class="book-card">
             <div class="card-actions">
               <button
@@ -155,18 +169,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { authUtils } from '../utils/auth'
-
-interface Book {
-  id: number
-  title: string
-  author: string
-  rating: number
-  cover: string
-  status?: 'leido' | 'leyendo' | 'por_leer'
-}
+import { getRandomBooks, searchBooks, type Book } from '../services/googleBooksService'
 
 // Simulamos datos del usuario (luego vendrán de Pinia/Vuex/Firebase)
 const userName = ref('Ana')
@@ -213,49 +219,74 @@ const logout = () => {
   router.push('/welcome')
 }
 
-// Libros de ejemplo
-const trendingBooks = ref<Book[]>([
-  {
-    id: 1,
-    title: 'Cien años de soledad',
-    author: 'Gabriel García Márquez',
-    rating: 4.9,
-    cover: 'https://picsum.photos/200/300?random=1',
-  },
-  {
-    id: 2,
-    title: 'La casa de los espíritus',
-    author: 'Isabel Allende',
-    rating: 4.6,
-    cover: 'https://picsum.photos/200/300?random=2',
-  },
-  {
-    id: 3,
-    title: 'Rayuela',
-    author: 'Julio Cortázar',
-    rating: 4.3,
-    cover: 'https://picsum.photos/200/300?random=3',
-  },
-  {
-    id: 4,
-    title: 'El amor en los tiempos del cólera',
-    author: 'G. García Márquez',
-    rating: 4.7,
-    cover: 'https://picsum.photos/200/300?random=4',
-  },
-])
-
-// Search state and derived list
+// Libros desde Google Books API
+const trendingBooks = ref<Book[]>([])
+const isLoading = ref(false)
+const errorMessage = ref('')
 const searchQuery = ref('')
+const isSearchMode = ref(false) // Para saber si estamos en modo búsqueda
+
+// Cargar libros al iniciar
+const loadBooks = async () => {
+  try {
+    isLoading.value = true
+    errorMessage.value = ''
+    isSearchMode.value = false
+    const books = await getRandomBooks(20)
+    trendingBooks.value = books
+  } catch (error) {
+    errorMessage.value = error instanceof Error ? error.message : 'Error al cargar los libros'
+    console.error('Error cargando libros:', error)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+// Buscar libros en la API
+const handleSearch = async () => {
+  const query = searchQuery.value.trim()
+  
+  if (!query) {
+    loadBooks()
+    return
+  }
+  
+  try {
+    isLoading.value = true
+    errorMessage.value = ''
+    isSearchMode.value = true
+    const books = await searchBooks(query, 20)
+    trendingBooks.value = books
+  } catch (error) {
+    errorMessage.value = error instanceof Error ? error.message : 'Error al buscar libros'
+    console.error('Error buscando libros:', error)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+// Mostrar libros: si está en modo búsqueda, no filtrar localmente
 const filteredBooks = computed(() => {
+  // Si acabamos de buscar en la API, mostrar resultados directos
+  if (isSearchMode.value) {
+    return trendingBooks.value
+  }
+  
+  // Si no, filtrar localmente mientras el usuario escribe
   const q = searchQuery.value.trim().toLowerCase()
   if (!q) return trendingBooks.value
+  
   return trendingBooks.value.filter((b) => {
     return (
       b.title.toLowerCase().includes(q) ||
       (b.author && b.author.toLowerCase().includes(q))
     )
   })
+})
+
+// Cargar libros al montar el componente
+onMounted(() => {
+  loadBooks()
 })
 
 // Add-to-list menu state
@@ -548,6 +579,67 @@ const statusLabel = (s?: string) => {
   margin-top: 1rem;
   color: #8b6f47;
   text-align: center;
+}
+
+/* Loading state */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(46, 82, 102, 0.1);
+  border-top-color: #f9c846;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loading-state p {
+  color: #6b9080;
+  font-size: 1rem;
+}
+
+/* Error message */
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  gap: 1rem;
+  background: rgba(178, 58, 72, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(178, 58, 72, 0.1);
+}
+.error-icon {
+  font-size: 2.5rem;
+}
+.error-message p {
+  color: #b23a48;
+  font-weight: 600;
+  text-align: center;
+}
+.retry-btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f9c846, #f5e0a0);
+  color: #2e5266;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.1);
+}
+.retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 111, 71, 0.15);
 }
 
 .books-grid {
