@@ -5,7 +5,8 @@ This directory contains screenshots for the Parche Lector frontend documentation
 ## Required Screenshots
 
 ### Welcome View
-- [ ] `welcome-view.png` - Main welcome screen with branding and CTAs
+- `welcome-view.png` - Main welcome screen with branding and CTAs
+<img width="1934" height="1040" alt="welcome-view" src="https://github.com/user-attachments/assets/1136b4e8-e481-465c-a0c7-5363f8a25f3a" />
 
 ### Login View
 - [ ] `login-view.png` - Login form empty state
