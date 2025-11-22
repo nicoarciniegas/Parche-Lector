@@ -47,12 +47,15 @@ This directory contains screenshots for the Parche Lector frontend documentation
 
 ### Profile View
 - `profile-view.png` - Full profile page with user info
+  
   <img width="974" height="719" alt="profile-view" src="https://github.com/user-attachments/assets/a15aa807-9b20-4450-8786-e58ccd227d13" />
 
 - `profile-edit.png` - Edit profile modal opened
+  
   <img width="1744" height="947" alt="profile-edit" src="https://github.com/user-attachments/assets/0cca3204-e212-47f1-8a21-d1dafc9e220d" />
   
 - `profile-mobile.png` - Mobile profile layout
+  
   <img width="369" height="810" alt="profile-mobile" src="https://github.com/user-attachments/assets/a53b0e7c-6478-4a55-97e6-334f104cc9f0" />
 
 
