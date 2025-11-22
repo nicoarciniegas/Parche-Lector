@@ -148,36 +148,5 @@ After capturing screenshots:
    - [ImageOptim](https://imageoptim.com/)
    - `pngquant` command-line tool
 
-### Placeholder Images
 
-Until actual screenshots are captured, the documentation references placeholder paths. Replace these systematically as you capture each screenshot.
 
----
-
-## Screenshot Checklist
-
-Use this checklist when capturing screenshots:
-
-### Pre-Capture
-- [ ] Browser window at correct resolution
-- [ ] Dev tools closed (except for mobile simulation)
-- [ ] Realistic data loaded
-- [ ] UI in desired state (menu open, form filled, etc.)
-- [ ] No browser extensions visible
-
-### Post-Capture
-- [ ] Image cropped appropriately
-- [ ] File size optimized
-- [ ] Named according to convention
-- [ ] Saved in this directory
-- [ ] Visually reviewed for quality
-
-### Documentation Update
-- [ ] Referenced in README.md
-- [ ] Referenced in architecture.md
-- [ ] Referenced in components.md
-- [ ] Referenced in user-guide.md
-
----
-
-**Last Updated**: 2025-11-21
