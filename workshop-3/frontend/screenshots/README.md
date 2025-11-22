@@ -6,13 +6,16 @@ This directory contains screenshots for the Parche Lector frontend documentation
 
 ### Welcome View
 - `welcome-view.png` - Main welcome screen with branding and CTAs
+  
 <img width="1934" height="1040" alt="welcome-view" src="https://github.com/user-attachments/assets/1136b4e8-e481-465c-a0c7-5363f8a25f3a" />
 
 ### Login View
 - `login-view.png` - Login form empty state
+  
   <img width="1923" height="951" alt="login-view" src="https://github.com/user-attachments/assets/6d2d7de9-54f4-4778-bafd-d2259c25ea20" />
 
 - `login-errors.png` - Login form with validation errors
+  
   <img width="1911" height="952" alt="login-errors" src="https://github.com/user-attachments/assets/f84d45e1-d4ba-4f0e-a84f-b724fbb2a9bf" />
 
 - `login-loading.png` - Login form during submission
@@ -20,25 +23,32 @@ This directory contains screenshots for the Parche Lector frontend documentation
 
 ### Register View
 - `register-view.png` - Registration form empty state
+  
   <img width="1918" height="950" alt="register-view" src="https://github.com/user-attachments/assets/79239549-8311-4c43-972e-a8ab3047021f" />
 
 - `register-errors.png` - Registration form with validation errors
+  
   <img width="1917" height="951" alt="register-errors" src="https://github.com/user-attachments/assets/2a2279de-5d17-41ef-82aa-30dc0a142fe3" />
 
 ### Home View
 - `home-view.png` - Main dashboard with trending books
+  
   <img width="1903" height="953" alt="home-view" src="https://github.com/user-attachments/assets/d477d3cf-3347-4003-a81e-8425402bdbcf" />
 
 - `home-search.png` - Search results display
+  
   <img width="1918" height="955" alt="home-search" src="https://github.com/user-attachments/assets/999649fa-a108-469a-97e9-2480c434b1bf" />
 
 - `home-menu.png` - User menu dropdown expanded
+  
   <img width="281" height="313" alt="home-menu" src="https://github.com/user-attachments/assets/a30d2fa7-9490-4383-8c0d-a643952a48e2" />
 
 - `home-book-menu.png` - Book action menu (add to lists)
+  
   <img width="237" height="452" alt="home-book-menu" src="https://github.com/user-attachments/assets/e2b6af72-1440-460b-afb1-796a679bccd7" />
   
 - `home-mobile-nav.png` - Mobile bottom navigation
+  
   <img width="488" height="631" alt="home-mobile-nav" src="https://github.com/user-attachments/assets/f3529c9b-572d-4d09-917d-2095081fd16b" />
 
 - `home-book-card.png` - Individual book card detail
