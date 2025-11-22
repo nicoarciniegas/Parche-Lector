@@ -19,7 +19,8 @@ This directory contains screenshots for the Parche Lector frontend documentation
   <img width="1911" height="952" alt="login-errors" src="https://github.com/user-attachments/assets/f84d45e1-d4ba-4f0e-a84f-b724fbb2a9bf" />
 
 - `login-loading.png` - Login form during submission
-<img width="1924" height="951" alt="login-loading" src="https://github.com/user-attachments/assets/d142ef3c-cae1-4abd-afae-cc7099d5bab1" />
+  
+  <img width="1924" height="951" alt="login-loading" src="https://github.com/user-attachments/assets/d142ef3c-cae1-4abd-afae-cc7099d5bab1" />
 
 ### Register View
 - `register-view.png` - Registration form empty state
@@ -52,6 +53,7 @@ This directory contains screenshots for the Parche Lector frontend documentation
   <img width="488" height="631" alt="home-mobile-nav" src="https://github.com/user-attachments/assets/f3529c9b-572d-4d09-917d-2095081fd16b" />
 
 - `home-book-card.png` - Individual book card detail
+  
   <img width="160" height="402" alt="home-book-card" src="https://github.com/user-attachments/assets/f1422f1f-3303-4fb3-b9bb-614f96f9942f" />
 
 
